@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import NewRoutes from "./routes";
+import { AppBar, Box, Toolbar, Typography, Stack, Step, Stepper,StepLabel } from '@mui/material'
+
 
 function App() {
+  const img =  require("./grana.png")
+ 
+  fetch("https://api.bradesco.com/bradesco/open-banking/products-services/v1/personal-financings?page=1&page-size=25").then(response =>{
+    return response.json();
+      }).then(data =>
+      {console.log(data)
+  })
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <AppBar component="nav" variant="outlined" sx={{ 
+        zIndex: 2, 
+        position: 'absolute', 
+        left: '0px', height: '140px', 
+        display:'flex',
+        justifyContent:'center',
+        background:'#fff',
+        color:'black',
+        boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)'
+        }}>
+        <Toolbar>
+          <Box>
+          <Typography variant="h3">Sistema de Financiamento</Typography>
+          <Typography variant='h6'>Faça o Calculo de seu Financiamento!</Typography>
+          </Box>
+          
+        </Toolbar>
+      </AppBar>
+      <Stack direction='row' sx={{position:'absolute', top:'140px',  height:'calc(100vh - 142px)', width:'100%'}}>
+     <Stack spacing={2} sx={{zIndex:7 ,padding:'0px 30px', width:'50%', height:'100%', alignItems:'center', justifyContent:'center',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)',}} >
+     <Typography variant="h3" textAlign='center'>Digite os valores para calcularmos as taxas</Typography>
+     <Typography variant="subtitle1" padding='0px 95px' textAlign='center'>Nosso Simulador calculará Grandes oportunidades de financiamento para que você possa realizar seu sonho da casa própria</Typography>
+  <img src={img} alt="" style={{height:'140px', width:'140px'}} />
+     <Stepper alternativeLabel activeStep={0} sx={{width:'80%'}}>
+        
+    <Step>
+      <StepLabel >Passo 1</StepLabel>
+    </Step>
+
+ 
+    <Step >
+      <StepLabel >Passo 2</StepLabel>
+    </Step>
+    <Step >
+      <StepLabel >Passo 3</StepLabel>
+    </Step>
+    <Step >
+      <StepLabel >Passo 4</StepLabel>
+    </Step>
+
+</Stepper>
+
+</Stack>
+<Box sx={{ zIndex:4, width:'50%',  height:'100%',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)' }}>
+      <NewRoutes />
+      </Box>
+      </Stack>
+    </Box>
   );
 }
+
 
 export default App;
