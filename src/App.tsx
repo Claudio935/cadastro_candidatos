@@ -1,6 +1,6 @@
 import React from "react";
 import NewRoutes from "./routes";
-import { AppBar, Box, Toolbar, Typography, Stack, Step, Stepper,StepLabel } from '@mui/material'
+import { AppBar, Grid, Box, Toolbar, Typography, Stack, Step, Stepper,StepLabel } from '@mui/material'
 
 
 function App() {
@@ -32,12 +32,14 @@ function App() {
           
         </Toolbar>
       </AppBar>
-      <Stack direction='row' sx={{position:'absolute', top:'140px',  height:'calc(100vh - 142px)', width:'100%'}}>
-     <Stack spacing={2} sx={{zIndex:7 ,padding:'0px 30px', width:'50%', height:'100%', alignItems:'center', justifyContent:'center',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)',}} >
+      <Grid container spacing={0} sx={{position:'absolute', top:'140px',  height:'calc(100vh - 142px)', width:'100%',...style.img}}>
+     <Grid item xs={12} md={6}  sx={{zIndex:7 ,padding:'20px 30px', height:'100%', alignItems:'center', justifyContent:'center',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)',}} >
      <Typography variant="h3" textAlign='center'>Digite os valores para calcularmos as taxas</Typography>
-     <Typography variant="subtitle1" padding='0px 95px' textAlign='center'>Nosso Simulador calculará Grandes oportunidades de financiamento para que você possa realizar seu sonho da casa própria</Typography>
-  <img src={img} alt="" style={{height:'140px', width:'140px'}} />
-     <Stepper alternativeLabel activeStep={0} sx={{width:'80%'}}>
+     <Typography  variant="subtitle1" padding='0px 95px' textAlign='center'>Nosso Simulador calculará Grandes oportunidades de financiamento para que você possa realizar seu sonho da casa própria</Typography>
+  <Box sx={{width:'100%', justifyContent:'center', alignItems:'center', display:'flex', margin:'15px 0px'}}>
+  <img src={img} alt="" style={{height:'100%', width:'140px', textAlign:'center'}} />
+  </Box>
+     <Stepper alternativeLabel activeStep={0} sx={{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
         
     <Step>
       <StepLabel >Passo 1</StepLabel>
@@ -56,14 +58,23 @@ function App() {
 
 </Stepper>
 
-</Stack>
-<Box sx={{ zIndex:4, width:'50%',  height:'100%',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)' }}>
+</Grid>
+<Grid item xs={12} md={6} sx={{ zIndex:4,   height:'100%',  boxShadow: ' 0px 2px 12px rgba(0, 0, 0, 0.1)' }}>
       <NewRoutes />
-      </Box>
-      </Stack>
+      </Grid>
+      </Grid>
     </Box>
   );
 }
 
+const style = {
+  
+  img:{
+    '@media (max-width: 600px)': {
+      height:'650px !important'
+     },
+  },
 
+
+}
 export default App;
