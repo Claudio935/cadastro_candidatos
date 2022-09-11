@@ -71,7 +71,7 @@ const style = {
   
   img:{
     '@media (max-width: 600px)': {
-      height:'650px !important'
+      height:'700px !important'
      },
   },
 
