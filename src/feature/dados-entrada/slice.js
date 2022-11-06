@@ -1,29 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit'
-
-
-import {ler} from "../../query/ler"
-
-
-const dados = ler()
-
-
+import { createSlice } from "@reduxjs/toolkit";
 
 export const slice = createSlice({
-  name:'materia',
+  name: "dadosCadastro",
   initialState: {
-    ...dados.then((item)=>(item))
-  },
-  reducers: {
-    setDadosEstudo: (state, action) => {
-     
-      state.materia = action.payload.materia
-      state.horarioInicio = action.payload.horarioInicio
-      state.horarioFim = action.payload.horarioFim
+    dadosEntrada: {
+      estado: "",
+      cidade: "",
+      nome: "",
+      bairro: "",
+      logradouro: "",
+      telefone: "",
+      email: "",
     },
+    passo: {
+      atual: 0,
+    },
+    dadosExperiencia: { possuiExperiencia: "0", tecnologiasAprendidas: [], experienciaAnterior:"", ultimoCargo:"" },
+    dadosFinais:{
+      email:''
+    }
   },
-})
+
+  reducers: {
+    setDadosCadastros: (state, action) => {
+      state.dadosEntrada = action.payload;
+    },
+    setPasso: (state, action) => {
+      state.passo.atual = action.payload;
+    },
+    setDadosExperiencia: (state, action) => {
+      state.dadosExperiencia = action.payload;
+    }, 
+    setDadosFinais: (state, action) => {
+      state.dadosFinais = action.payload;
+    }, 
+  },
+});
 
 // Action creators are generated for each case reducer function
-export const { setDadosEstudo } = slice.actions
+export const { setDadosCadastros, setPasso, setDadosExperiencia, setDadosFinais } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;
